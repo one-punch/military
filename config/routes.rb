@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   get "/" => "application#home"
 
+  get "/login" => "session#login"
+  get "/register" => "session#register"
 
   namespace "admin" do
     get "/" => "application#home"
+    get "/login" => "session#login"
   end
 
 end
