@@ -10,6 +10,14 @@ module ApplicationHelper
     end
   end
 
+  def current_user
+    if @user.present?
+      @user
+    elsif session[:user_id].present? && User.where(id: session[:user_id]).exists?
+      @user = User.where(id: session[:user_id]).last
+    end
+  end
+
   def encode64(str)
     Base64.encode64(str).strip
   end

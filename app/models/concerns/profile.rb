@@ -13,7 +13,7 @@ module Profile
     end
 
     def generate_unit_hex
-      SecureRandom.hex(8)
+      self.class.generate_unit_hex
     end
 
     def reset_password!(pwd)
@@ -21,6 +21,7 @@ module Profile
       raise Military::Error::Base.new("Passwords must be between 6-16 characters long") and return if pwd.length < 6 || pwd.length > 16
       @password = pwd
       self[:password_hash] = encrypt(pwd)
+      self.save!
     end
 
     def reset_password(pwd)
@@ -62,6 +63,8 @@ module Profile
   end
 
   class_methods do
-
+    def generate_unit_hex
+      SecureRandom.hex(8)
+    end
   end
 end

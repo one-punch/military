@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace "admin" do
     get "/" => "application#home"
     get "/login" => "session#login"
+    post "/login" => "session#login"
   end
 
 end

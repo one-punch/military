@@ -5,10 +5,10 @@ class SessionController < ApplicationController
     if request.post?
       respond_to do |format|
         if params[:email].present? && params[:password].present?
-          @customer = Customer.where(email: params[:email]).last
+          @customer = Customer.where(email: params[:email].strip).last
           if @customer.blank?
             format.js{ render "/session/fail", locals: {message: "Email not exist"} }
-          elsif @customer.verify_password(params[:password])
+          elsif @customer.verify_password(params[:password].strip)
             session[:customer_id] = @customer.id
             if params[:remember].present?
               cookies.signed[:customer] = "#{@customer.id}-#{@customer.email}"
@@ -37,8 +37,8 @@ class SessionController < ApplicationController
           if params[:password] != params[:password_confirmation]
             format.js{ render "/session/fail", locals: {message: "Password and Password Confirmation Mismatch"} }
           else
-            @customer = Customer.new(email: params[:email], password: params[:password],
-              password_confirmation: params[:password_confirmation])
+            @customer = Customer.new(email: params[:email].strip, password: params[:password].strip,
+              password_confirmation: params[:password_confirmation].strip)
             if @customer.save
               session[:customer_id] = @customer.id
               if params[:to].present?
