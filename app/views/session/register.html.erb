@@ -6,22 +6,28 @@
           <h1 class="text-center">Register</h1>
       </div>
       <div class="modal-body">
+        <div id="error-tips" style="display: none;" class="row">
+          <div class="col-md-12">
+            <p class="bg-danger" style="font-size: 18px; padding: 10px;">something error</p>
+          </div>
+        </div>
         <div class="row">
-          <form class="form col-md-12 center-block">
-              <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Email" required>
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control input-lg" placeholder="Password" required>
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control input-lg" placeholder="Password Confirm" required>
-              </div>
-              <div class="form-group">
-                <button class="btn btn-primary btn-lg btn-block">Register</button>
-                <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
-              </div>
-            </form>
+          <%= form_tag(register_path, method: :POST, remote: true, class: "form col-md-12 center-block") do %>
+            <input type="hidden" name="to" value="<%= params[:to] %>">
+            <div class="form-group">
+              <input type="text" name="email" class="form-control input-lg" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control input-lg" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password_confirmation" class="form-control input-lg" placeholder="Password Confirm" required>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block">Register</button>
+              <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="modal-footer">

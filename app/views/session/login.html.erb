@@ -6,18 +6,24 @@
           <h1 class="text-center">Login</h1>
       </div>
       <div class="modal-body">
+        <div id="error-tips" style="display: none;" class="row">
+          <div class="col-md-12">
+            <p class="bg-danger" style="font-size: 18px; padding: 10px;">something error</p>
+          </div>
+        </div>
         <div class="row">
-          <form class="form col-md-12 center-block">
+          <%= form_tag(login_path, method: :POST, remote: true, class: "form col-md-12 center-block") do %>
+              <input type="hidden" name="to" value="<%= params[:to] %>">
               <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Email" required>
+                <input type="text" name="email" class="form-control input-lg" placeholder="Email" required>
               </div>
               <div class="form-group">
-                <input type="password" class="form-control input-lg" placeholder="Password" required>
+                <input type="password" name="password" class="form-control input-lg" placeholder="Password" required>
               </div>
               <div class="form-group">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Remember me
+                    <input name="remember" type="checkbox"> Remember me
                   </label>
                 </div>
               </div>
@@ -25,7 +31,7 @@
                 <button class="btn btn-primary btn-lg btn-block">Sign In</button>
                 <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
               </div>
-            </form>
+            <% end %>
         </div>
       </div>
       <div class="modal-footer">

@@ -1,0 +1,6 @@
+$(function(){
+  $("#error-tips .bg-danger").html("<%= message %>")
+  $("#error-tips").show()
+  setTimeout(function(){
+   $("#error-tips").hide() }, 5000)
+})
