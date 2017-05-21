@@ -18,6 +18,16 @@ module ApplicationHelper
     end
   end
 
+  def clear_current_user
+    @user = nil if @user.present?
+    session.delete(:user_id) if session[:user_id].present?
+  end
+
+  def clear_current_customer
+    @customer = nil if @customer.present?
+    session.delete(:customer_id) if session[:customer_id].present?
+  end
+
   def encode64(str)
     Base64.encode64(str).strip
   end

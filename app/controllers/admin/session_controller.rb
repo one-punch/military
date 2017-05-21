@@ -33,4 +33,10 @@ class Admin::SessionController < Admin::ApplicationController
     end
   end
 
+
+  def sign_out
+    clear_current_user
+    redirect_to(admin_url) and return
+  end
+
 end

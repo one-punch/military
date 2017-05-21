@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "/login" => "session#login"
   post "/login" => "session#login"
 
+  post "/sign_out" => "session#sign_out"
+
   get "/register" => "session#register"
   post "/register" => "session#register"
 
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
     get "/" => "application#home"
     get "/login" => "session#login"
     post "/login" => "session#login"
+
+    post "/sign_out" => "session#sign_out"
   end
 
 end

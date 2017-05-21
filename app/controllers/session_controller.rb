@@ -56,4 +56,9 @@ class SessionController < ApplicationController
     end
   end
 
+  def sign_out
+    clear_current_customer
+    redirect_to(home_url) and return
+  end
+
 end
